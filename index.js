@@ -1,5 +1,8 @@
 //Завдання 1.Cтворіть об'єкт person за допомогою конструктора з полями name: "John",age: 25
-let person = {};
+let person = {
+  name: "John",
+  age: 25,
+};
 
 console.log("Завдання 1 ====================================");
 
@@ -8,6 +11,16 @@ console.log("person", person); // Виведе {name: "John", age: 25}
 //Завдання 2. Cтворіть об'єкт personLarge який буде мати такі ж поля як person ,
 // та вкладений об'єкт address з полями  street: "123 Main St", city: "New York", country: "USA",
 let personLarge = {
+  person: {
+    name: "John",
+    age: 25,
+  
+  address: {
+    street: "123 Main St",
+    city: "New York",
+    country: "USA",
+  },
+  },
   //використовуємо деструктурізацію на об'єкті person
   //створюємо об'єкт address
 };
@@ -29,6 +42,8 @@ var animal = {
 
 // Функція для створення нового об'єкта з тими ж властивостями
 function copyObject(obj) {
+  return animal;
+ 
   // Використовуємо синтаксис деструктурізації {...person} для створення нового об'єкта з тими ж властивостями
   // Повертаємо новий об'єкт
 }
@@ -44,6 +59,11 @@ let fruit = {
 };
 // Функція для перевірки наявності властивості в об'єкті
 function hasProperty(obj, property) {
+  if (property in obj) {
+    return `Property ${property} exists`;
+  } else {
+    return `Property ${property} does not exist`;
+  }
   // Використовуємо оператор "in" для перевірки наявності властивості
   // Запишимо умову якщо властивість існує повертає текст Property ${property} exists,
   // інашке повертаємо Property ${property} does not exist.
@@ -60,6 +80,10 @@ let country = {
 };
 // Функція для виведення всіх ключів і значень об'єкта
 function printKeysAndValues(obj) {
+  for (const value in country) {
+    console.log("Key: " + value + "Value: " + country[value]);
+  }
+  
   // Проходимося по всіх ключах об'єкту за допомогою циклу "for in"
   // Виводимо ключ та значення на консоль
 }
@@ -77,6 +101,8 @@ let movie = {
 };
 // Функція для видалення властивості з об'єкта
 function deleteProperty(obj, property) {
+  delete movie.director;
+  console.log(movie);
   // Використовуємо оператор "delete" для видалення властивості
   // Повертаємо об'єкт
 }
@@ -89,6 +115,9 @@ console.log(deleteProperty(movie, "director")); // Виведе { title: 'Incept
 let user = {
   name: "John",
   age: 25,
+  introduce() {
+    return (`'My name is ' ${this.name} 'and I am ' ${this.age} 'years old'`);
+  }
   // Створюємо метод introduce, який за допомогою ключового слова this має повернути такий рядок
   // My name is John and I am 25 years old.
 };
@@ -96,7 +125,7 @@ let user = {
 console.log("Завдання 7 ====================================");
 // Викликаємо метод introduce об'єкта user
 // Розкоментуйте рядок нижче після виконня завдання для перевірки
-// console.log(user.introduce());
+console.log(user.introduce());
 // Виведе My name is John and I am 25 years old.
 
 // Завдання 8: Створіть функцію, яка додає нове поле до об'єкту.
@@ -107,6 +136,7 @@ let book = {
 
 // Функція для додавання нового поля до об'єкту
 function addField(obj, newField, value) {
+  return (`'title: ' ${book.title} 'author: ' ${book.author} [year: 1960]`);
   // Додаємо нове поле до об'єкту з допомогою квадратних дужок
   // Повертаємо об'єкт
 }
