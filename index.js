@@ -81,7 +81,7 @@ let country = {
 // Функція для виведення всіх ключів і значень об'єкта
 function printKeysAndValues(obj) {
   for (const value in country) {
-    console.log("Key: " + value + "Value: " + country[value]);
+    console.log("Key: " + value + ", " + "Value: " + country[value]);
   }
   
   // Проходимося по всіх ключах об'єкту за допомогою циклу "for in"
@@ -116,7 +116,7 @@ let user = {
   name: "John",
   age: 25,
   introduce() {
-    return (`'My name is ' ${this.name} 'and I am ' ${this.age} 'years old'`);
+    return (`My name is  ${this.name} and I am  ${this.age} years old`);
   }
   // Створюємо метод introduce, який за допомогою ключового слова this має повернути такий рядок
   // My name is John and I am 25 years old.
@@ -172,11 +172,10 @@ let userList = [
 
 // Функція для зміни ролі всіх осіб у масиві
 function changeRole(array, newRole) {
-  for (const i in userList) {
-    userList[i[1]] = 'editor';
-     return userList;
+  for (const i of userList) {
+    userList[[i['role']]] = "editor"; 
   };
-  console.log(userList);
+  console.log(userList); 
  
   // Ітеруємося по масиву об'єктів за допомогою циклу "for of"
   // Змінюємо роль кожного користувача на нове ім'я
@@ -238,14 +237,18 @@ let car = {
 // Створюємо функцію, яка приймає об'єкт як аргумент і використовує деструктуризацію зі значенням за замовчуванням
 // brand за замовчуванням призначемо Unknown, year за замовчуванням призначемо 0, country за замовчуванням призначемо Unknown
 
-function showCarInfo({
-  brand = "Unknown",
-  year = 0,
-  country = "Unknown",
-} = {car}) {
+function showCarInfo(
+ car = { 
+  brand: "Unknown",
+  year: 0,
+  country: "Unknown",
+})
+    
   // Повертаємо об'єкт зі значеннями властивостей
-  return (car);
-}
+  {
+    return (car);
+  }
+
 
 console.log("Завдання 13 ====================================");
 console.log(showCarInfo(car)); // Виведе { brand: 'BMW', year: 2022, country: 'Unknown' }
@@ -253,17 +256,19 @@ console.log(showCarInfo(car)); // Виведе { brand: 'BMW', year: 2022, count
 // Завдання 14: Додайте нову властивість до вбудованого об'єкту Array через літерал.
 // Створюємо функцію, яка буде додавати нову властивість до масиву
 function addProperty(array) {
-  array.customProperty = "myProperty";
+  Array.customProperty = "myProperty";
   return array;
   
   // Додаємо нову властивість customProperty до прототипу Array зі значенням myProperty
   // Повертаємо переданий масив з новою властивістю
-}
+};
 
 console.log("Завдання 14 ====================================");
-function newArr(array) {
-  newArr.customProperty = [1, 2, 3, 4, 5];
-}
+
+const  newArr = (addProperty(
+  { customProperty: [1, 2, 3, 4, 5] }
+));
+
 // Створимо масив newArr з новою властивістю за допомогої нашої функції в яку передамо [1, 2, 3, 4, 5]
 
 // Розкоментуйте рядок нижче після виконня завдання для перевірки
