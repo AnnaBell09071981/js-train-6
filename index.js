@@ -42,11 +42,14 @@ var animal = {
 
 // Функція для створення нового об'єкта з тими ж властивостями
 function copyObject(obj) {
-  return animal;
+  ({ animal, ...person } = {})
+  
  
   // Використовуємо синтаксис деструктурізації {...person} для створення нового об'єкта з тими ж властивостями
   // Повертаємо новий об'єкт
+  return obj;
 }
+
 
 console.log("Завдання 3 ====================================");
 
@@ -80,7 +83,7 @@ let country = {
 };
 // Функція для виведення всіх ключів і значень об'єкта
 function printKeysAndValues(obj) {
-  for (const value in country) {
+  for (const value in obj) {
     console.log("Key: " + value + ", " + "Value: " + country[value]);
   }
   
@@ -102,9 +105,10 @@ let movie = {
 // Функція для видалення властивості з об'єкта
 function deleteProperty(obj, property) {
   delete movie.director;
-  console.log(movie);
+  // console.log(movie);
   // Використовуємо оператор "delete" для видалення властивості
   // Повертаємо об'єкт
+  return obj;
 }
 
 console.log("Завдання 6 ====================================");
@@ -132,12 +136,11 @@ console.log(user.introduce());
 let book = {
   title: "To Kill a Mockingbird",
   author: "Harper Lee",
-  ["year"]: 1960,
 };
 
 // Функція для додавання нового поля до об'єкту
 function addField(obj, newField, value) {
-  return book;
+  return { obj, newField, value };
   // Додаємо нове поле до об'єкту з допомогою квадратних дужок
   // Повертаємо об'єкт
 }
@@ -172,10 +175,11 @@ let userList = [
 
 // Функція для зміни ролі всіх осіб у масиві
 function changeRole(array, newRole) {
-  for (const i of userList) {
-    userList[[i['role']]] = "editor"; 
+  for (let user of array) {
+    user.role = newRole; 
+    console.log(user);
   };
-  console.log(userList); 
+ 
  
   // Ітеруємося по масиву об'єктів за допомогою циклу "for of"
   // Змінюємо роль кожного користувача на нове ім'я
@@ -203,7 +207,9 @@ function printProductDetails(obj) {
   console.log(product.productName, product.price, product.manufacturer.companyName, product.manufacturer.country);
   // Використовуємо деструктуризацію для отримання значень productName, price i також значень companyName, country вкладеного об'єкту manufacturer
   // Виводимо productName, price, companyName та country на консоль
+  return obj;
 }
+
 
 console.log("Завдання 11 ====================================");
 printProductDetails(product); // Виведе Smartphone 699 Tech Corp USA
@@ -237,16 +243,15 @@ let car = {
 // Створюємо функцію, яка приймає об'єкт як аргумент і використовує деструктуризацію зі значенням за замовчуванням
 // brand за замовчуванням призначемо Unknown, year за замовчуванням призначемо 0, country за замовчуванням призначемо Unknown
 
-function showCarInfo(
- car = { 
-  brand: "Unknown",
-  year: 0,
-  country: "Unknown",
-})
+function showCarInfo({ 
+  brand = "Unknown",
+  year = 0,
+  country = "Unknown",
+} = {})
     
   // Повертаємо об'єкт зі значеннями властивостей
   {
-    return (car);
+    return { brand, year, country };
   }
 
 
@@ -256,7 +261,7 @@ console.log(showCarInfo(car)); // Виведе { brand: 'BMW', year: 2022, count
 // Завдання 14: Додайте нову властивість до вбудованого об'єкту Array через літерал.
 // Створюємо функцію, яка буде додавати нову властивість до масиву
 function addProperty(array) {
-  Array.customProperty = "myProperty";
+  Array.prototype.customProperty = "myProperty";
   return array;
   
   // Додаємо нову властивість customProperty до прототипу Array зі значенням myProperty
@@ -265,9 +270,7 @@ function addProperty(array) {
 
 console.log("Завдання 14 ====================================");
 
-const  newArr = (addProperty(
-  { customProperty: [1, 2, 3, 4, 5] }
-));
+const newArr = (addProperty([1, 2, 3, 4, 5]));
 
 // Створимо масив newArr з новою властивістю за допомогої нашої функції в яку передамо [1, 2, 3, 4, 5]
 
